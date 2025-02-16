@@ -1,0 +1,43 @@
+# Операционные системы
+.DS_Store
+Thumbs.db
+
+# Виртуальное окружение Python
+venv/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache
+.pytest_cache
+
+# Логи и временные файлы
+logs/
+*.log
+*.out
+*.err
+*.pid
+*.swp
+
+# Кэш pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Базы данных
+*.sqlite3
+db.sqlite3
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.iml
+
+# Тесты и покрытие
+.coverage
+htmlcov/
+pytest_cache/
