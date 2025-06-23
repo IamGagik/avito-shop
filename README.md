@@ -1,109 +1,107 @@
 # 🛍 Avito Shop API
 
-**Сервис для внутреннего магазина мерча Авито, где сотрудники могут обмениваться монетами и приобретать товары.**
+**An internal merchandise store API for Avito employees — where team members can exchange coins and purchase goods.**
 
 ---
 
-## 📌 **1. Описание проекта**
+## 📌 **1. Project Description**
 
-Данный сервис позво043bяет:
+This service allows users to:
 
-- Авторизоваться и получать JWT-токен.
-- Покупать товары за монеты.
-- Передавать монеты другим сотрудникам.
-- Просматривать баланс монет и историю транзакций.
-
----
-
-## 🚀 **2. Запуск проекта**
-
-### **📦 2.1. Локальный запуск (без Docker)**
-
-1. **Установите зависимости**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Запустите PostgreSQL**\
-   Убедитесь, что у вас запущен PostgreSQL, и создана база данных `avito_shop`. Если её нет, создайте:
-
-   ```sql
-   CREATE DATABASE avito_shop;
-   ```
-
-### **🛠️ 2.1. Локальный запуск (с Docker)**
-
-Убедитесь, что Docker и Docker Compose установлены
-Проверьте, что ваш Docker работает:
-
-```bash
-   docker --version
-   docker-compose --version
-```
-
-Поменяйте .env файл с настройками базы данных
-
-```env
-   SQLALCHEMY_DATABASE_URL="postgresql://postgres:postgres@db:5432/avito_shop"
-```
-
-и также поменяйте app/db.py
-```db.py
-   SQLALCHEMY_DATABASE_URL = os.environ.get(
-    "SQLALCHEMY_DATABASE_URL",
-    "postgresql://postgres:postgres@db:5432/avito_shop"
-    )
-```
-
-
-Соберите и запустите Docker-контейнеры
-
-```bash
-   docker-compose up --build
-```
-
-Проверьте, что все контейнеры запущены
-
-```bash
-   docker ps
-```
-
-Проверьте API в браузере
-Откройте Swagger-документацию:👉 http://localhost:8080/docs
-
-3. **Настройте переменные окружения**\
-   В файле `.env` укажите строку подключения к базе данных:
-
-   ```env
-   SQLALCHEMY_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/avito_shop"
-   ```
-
-4. **Запустите приложение**
-
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-
-5. **Проверьте API в браузере**\
-   Откройте Swagger-документацию по адресу:\
-   👉 [http://localhost:8000/docs](http://localhost:8000/docs)
+- Authenticate and receive a JWT token  
+- Purchase products using internal coins  
+- Transfer coins to other employees  
+- View coin balance and transaction history  
 
 ---
 
-## 💪 **3. Запуск тестов**
+## 🚀 **2. Running the Project**
 
-### **🔹 3.1. Запуск тестов локально**
+### 📦 **2.1. Local Launch (without Docker)**
 
-Перед запуском тестов **обязательно** измените `SQLALCHEMY_DATABASE_URL` в `.env`, указав `localhost`:
+1. **Install dependencies:**
+
+```bash
+pip install -r requirements.txt
+```
+
+2. **Make sure PostgreSQL is running** and a database named `avito_shop` exists. If not, create it:
+
+```sql
+CREATE DATABASE avito_shop;
+```
+
+3. **Set environment variables**  
+Create a `.env` file in the root and add:
 
 ```env
 SQLALCHEMY_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/avito_shop"
 ```
 
-Затем запустите тесты:
+4. **Run the app:**
+
+```bash
+uvicorn app.main:app --reload
+```
+
+5. **Open Swagger UI:**  
+👉 [http://localhost:8000/docs](http://localhost:8000/docs)
+
+---
+
+### 🐳 **2.2. Local Launch with Docker**
+
+> Make sure **Docker** and **Docker Compose** are installed and running.
+
+Check versions:
+
+```bash
+docker --version
+docker-compose --version
+```
+
+1. **Update your `.env` file**:
+
+```env
+SQLALCHEMY_DATABASE_URL="postgresql://postgres:postgres@db:5432/avito_shop"
+```
+
+2. **Update `app/db.py` to use environment variable:**
+
+```python
+SQLALCHEMY_DATABASE_URL = os.environ.get(
+    "SQLALCHEMY_DATABASE_URL",
+    "postgresql://postgres:postgres@db:5432/avito_shop"
+)
+```
+
+3. **Build and run the containers:**
+
+```bash
+docker-compose up --build
+```
+
+4. **Check that containers are running:**
+
+```bash
+docker ps
+```
+
+5. **Access Swagger UI:**  
+👉 [http://localhost:8080/docs](http://localhost:8080/docs)
+
+---
+
+## 💪 **3. Running Tests**
+
+> ✅ **Important**: Set the correct local DB URL in `.env` before running tests:
+
+```env
+SQLALCHEMY_DATABASE_URL="postgresql://postgres:postgres@localhost:5432/avito_shop"
+```
+
+Then run tests:
 
 ```bash
 pytest
 ```
-
